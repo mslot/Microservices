@@ -26,7 +26,7 @@ namespace DataFunctions
             name = name ?? data?.name;
 
             return name != null
-                ? (ActionResult)new OkObjectResult($"Hello (updated 2), {name}")
+                ? (ActionResult)new OkObjectResult($"Hello (updated 3), {name}")
                 : new BadRequestObjectResult("Please pass a name on the query string or in the request body");
         }
     }
