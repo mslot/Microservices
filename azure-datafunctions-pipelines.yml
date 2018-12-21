@@ -6,8 +6,8 @@ pool:
   
 variables:
   buildConfiguration: 'Release'
-  
-triggers:
+
+trigger:
   paths:
     include:
     - src/WebAPI/*
