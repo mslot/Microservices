@@ -14,5 +14,6 @@ steps:
     publishWebProjects: False
     arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)/$(Build.BuildNumber)'
     zipAfterPublish: True
+    workingDirectory: src/WebAPI
 
 - task: PublishBuildArtifacts@1
