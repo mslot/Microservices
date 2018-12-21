@@ -12,7 +12,7 @@ steps:
   inputs:
     command: publish
     publishWebProjects: False
-    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)/$(Build.BuildNumber)'
+    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)/webapi-$(Build.BuildNumber)'
     zipAfterPublish: True
     workingDirectory: src/WebAPI
 
