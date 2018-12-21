@@ -6,6 +6,11 @@ pool:
   
 variables:
   buildConfiguration: 'Release'
+  
+triggers:
+  paths:
+    include:
+    - src/WebAPI/*
 
 steps:
 - task: DotNetCoreCLI@2

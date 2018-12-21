@@ -7,6 +7,11 @@ pool:
 variables:
   buildConfiguration: 'Release'
 
+triggers:
+  paths:
+    include:
+    - src/DataFunctions/*
+
 steps:
 - task: DotNetCoreCLI@2
   inputs:
