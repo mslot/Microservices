@@ -10,7 +10,7 @@ variables:
 trigger:
   paths:
     include:
-    - src/DataFunctions/*
+    - src/WebAPI/*
 
 steps:
 - task: DotNetCoreCLI@2
