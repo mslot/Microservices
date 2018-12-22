@@ -6,7 +6,6 @@ pool:
   
 variables:
   buildConfiguration: 'Release'
-  BUILD_BUILDNUMBER: $(Year:yyyy).$(Month).$(DayOfMonth)$(Rev:.r)
 
 trigger:
   branches:
