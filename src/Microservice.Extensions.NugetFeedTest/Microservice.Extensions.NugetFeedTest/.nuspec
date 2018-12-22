@@ -4,6 +4,6 @@
     <id>Microservice.Extensions</id>
     <description>A test package</description>
     <authors>Martin Slot</authors>
-
+    <version>1.0.0.0</version>
   </metadata>
 </package>
