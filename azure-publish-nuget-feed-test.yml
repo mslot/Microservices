@@ -32,4 +32,4 @@ steps:
     command: 'push'
     nuGetFeedType: 'internal'
     packagesToPush: '$(build.artifactStagingDirectory)/*.nupkg'
-    publishVstsFeed: 'TestFeed2'
+    publishVstsFeed: '$(nugetFeed)'
