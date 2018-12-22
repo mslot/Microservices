@@ -6,7 +6,8 @@ namespace Microservice.Extensions.NugetFeedTest
     {
         public string Method()
         {
-            return "Shared Test Method";
+            string s = "Shared Test Method";
+            return s;
         }
     }
 }
