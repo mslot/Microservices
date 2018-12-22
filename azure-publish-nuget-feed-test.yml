@@ -7,7 +7,8 @@ pool:
 variables:
   buildConfiguration: 'Release'
   nugetFeed: ''
-  BUILD_BUILDNUMBER: $(Year:yyyy).$(Month).$(DayOfMonth)$(Rev:.r)
+
+name: $(BuildDefinitionName)_$(Year:yyyy).$(Month).$(DayOfMonth)$(Rev:.r)
 
 trigger:
   branches:
