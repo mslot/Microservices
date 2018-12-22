@@ -6,7 +6,6 @@ pool:
   
 variables:
   buildConfiguration: 'Release'
-  nugetFeed: ''
 
 name: $(BuildDefinitionName)_$(Year:yyyy).$(Month).$(DayOfMonth)$(Rev:.r)
 
@@ -27,9 +26,4 @@ steps:
     packagesToPack: 'src/Microservice.Extensions.NugetFeedTest/Microservice.Extensions.NugetFeedTest/Microservice.Extensions.NugetFeedTest.csproj'
     versioningScheme: byBuildNumber
 
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'push'
-    nuGetFeedType: 'internal'
-    packagesToPush: '$(build.artifactStagingDirectory)/*.nupkg'
-    publishVstsFeed: '$(nugetFeed)'
+- task: PublishBuildArtifacts@1
