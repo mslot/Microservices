@@ -1,0 +1,33 @@
+# Build ASP.NET Core project using Azure Pipelines
+# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core?view=vsts
+
+pool:
+  vmImage: 'Ubuntu 16.04'
+  
+variables:
+  buildConfiguration: 'Release'
+  nugetFeed: ''
+
+trigger:
+  branches:
+    include:
+    - "*"
+  paths:
+    include:
+    - src/Microsoft.Extensions.NugetFeedTest/*
+
+steps:
+- task: DotNetCoreCLI@2
+  inputs:
+    command: pack
+    packDirectory: '$(build.artifactStagingDirectory)'
+    configuration: $(BuildConfiguration)
+    packagesToPack: 'src/Microservice.Extensions.NugetFeedTest/Microservice.Extensions.NugetFeedTest/Microservice.Extensions.NugetFeedTest.csproj'
+    versioningScheme: byBuildNumber
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'push'
+    nuGetFeedType: 'internal'
+    packagesToPush: '$(build.artifactStagingDirectory)/*.nupkg'
+    publishVstsFeed: $(nugetFeed)
