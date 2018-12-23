@@ -7,7 +7,7 @@ pool:
 variables:
   buildConfiguration: 'Release'
 
-name: $(BuildDefinitionName)_$(Year:yyyy).$(Month).$(DayOfMonth)$(Rev:.r)
+name: $(BuildDefinitionName)_$(Year:yyyy).$(Month).$(DayOfMonth)$(Rev:.r)-alpha
 
 trigger:
   branches:
