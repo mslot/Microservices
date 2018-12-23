@@ -2,6 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Martin SLot</Authors>
+    <Company>BAMCAS</Company>
+    <Description>This is a test nuget to test Microsoft DevOps Artifact feed</Description>
+    <Copyright>Apache</Copyright>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Version>1.0.0-alpha</Version>
   </PropertyGroup>
 
 </Project>
