@@ -6,7 +6,6 @@ pool:
   
 variables:
   buildConfiguration: 'Release'
-  myNugetVersion: '1.2.3-alpha'
 
 name: $(BuildDefinitionName)_$(Year:yyyy).$(Month).$(DayOfMonth)$(Rev:.r)
 
@@ -25,7 +24,6 @@ steps:
     packDirectory: '$(build.artifactStagingDirectory)'
     configuration: $(BuildConfiguration)
     packagesToPack: 'src/Microservice.Extensions.NugetFeedTest/Microservice.Extensions.NugetFeedTest/Microservice.Extensions.NugetFeedTest.csproj'
-    versioningScheme: byEnvVar
-    versionEnvVar: MyNugetVersion
+    versioningScheme: byBuildNumber
 
 - task: PublishBuildArtifacts@1
