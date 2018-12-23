@@ -25,6 +25,6 @@ steps:
     configuration: $(BuildConfiguration)
     packagesToPack: 'src/Microservice.Extensions.NugetFeedTest/Microservice.Extensions.NugetFeedTest/Microservice.Extensions.NugetFeedTest.csproj'
     versioningScheme: byEnvVar
-    versionEnvVar: $(NugetVersion)
+    versionEnvVar: NugetVersion
 
 - task: PublishBuildArtifacts@1
