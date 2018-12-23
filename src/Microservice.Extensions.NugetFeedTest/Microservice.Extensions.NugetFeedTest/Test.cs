@@ -6,7 +6,8 @@ namespace Microservice.Extensions.NugetFeedTest
     {
         public string MethodNew()
         {
-            return "new method";
+            string s = "new method";
+            return s;
         }
 
         public string Method()
