@@ -10,7 +10,7 @@ variables:
   Minor: '0'
   Patch: '0'
 
-name: $(BuildDefinitionName)_$(Major).$(Minor).$(Patch)-$(date:yyyyMMdd)-$(Rev:r)
+name: $(BuildDefinitionName)_$(Major).$(Minor).$(Patch)-$(date:yyyyMMddHHmmss)
 
 trigger:
   branches:
@@ -27,6 +27,10 @@ steps:
     packDirectory: '$(build.artifactStagingDirectory)'
     configuration: $(BuildConfiguration)
     packagesToPack: 'src/Microservice.Extensions.NugetFeedTest/Microservice.Extensions.NugetFeedTest/Microservice.Extensions.NugetFeedTest.csproj'
-    versioningScheme: byBuildNumber
+    versioningScheme: byPrereleaseNumber
+    major: $(Major)
+    minor: $(Minor)
+    patch: $(Patch)
+    packTimezone: 'utc'
 
 - task: PublishBuildArtifacts@1
