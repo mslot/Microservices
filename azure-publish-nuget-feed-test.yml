@@ -6,8 +6,11 @@ pool:
   
 variables:
   buildConfiguration: 'Release'
+  Major: '1'
+  Minor: '0'
+  Patch: '0'
 
-name: $(BuildDefinitionName)_$(Year:yyyy).$(Month).$(DayOfMonth)$(Rev:.r)
+name: $(BuildDefinitionName)_$(Major).$(Minor).$(Patch).$(date:yyyyMMdd)
 
 trigger:
   branches:
