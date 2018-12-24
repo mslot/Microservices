@@ -8,7 +8,7 @@ variables:
   buildConfiguration: 'Release'
   Major: '2'
   Minor: '0'
-  Patch: '0'
+  Patch: '1'
 
 name: $(BuildDefinitionName)_$(Major).$(Minor).$(Patch)-$(date:yyyyMMddHHmmss)
 
