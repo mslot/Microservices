@@ -28,9 +28,9 @@ steps:
     configuration: $(BuildConfiguration)
     packagesToPack: 'src/Microservice.Extensions.NugetFeedTest/Microservice.Extensions.NugetFeedTest/Microservice.Extensions.NugetFeedTest.csproj'
     versioningScheme: byPrereleaseNumber
-    major: $(Major)
-    minor: $(Minor)
-    patch: $(Patch)
+    majorVersion: $(Major)
+    minorVersion: $(Minor)
+    patchVersion: $(Patch)
     packTimezone: 'utc'
 
 - task: PublishBuildArtifacts@1
