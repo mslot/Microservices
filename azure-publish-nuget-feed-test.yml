@@ -10,7 +10,7 @@ variables:
   Minor: '0'
   Patch: '0'
 
-name: $(BuildDefinitionName)_$(Major).$(Minor).$(Patch).$(date:yyyyMMdd)
+name: $(BuildDefinitionName)_$(Major).$(Minor).$(Patch)-$(date:yyyyMMdd)-$(Rev:r)
 
 trigger:
   branches:
