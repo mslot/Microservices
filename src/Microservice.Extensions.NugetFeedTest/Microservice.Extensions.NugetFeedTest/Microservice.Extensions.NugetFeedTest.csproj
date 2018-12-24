@@ -7,7 +7,7 @@
     <Description>This is a test nuget to test Microsoft DevOps Artifact feed</Description>
     <Copyright>Apache</Copyright>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Version>1.0.0</Version>
+    <Version>2.0.1</Version>
   </PropertyGroup>
 
 </Project>
