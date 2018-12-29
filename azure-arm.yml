@@ -17,9 +17,10 @@ trigger:
 
 steps:
 - task: CopyFiles@2
-  sourceFolder: src/Microservices.Tooling.Azure/Microservices.Tooling.Azure.ARM
-  contents: '*.json'
-  targetFolder: $(Build.ArtifactStagingDirectory)
+  inputs:
+    sourceFolder: src/Microservices.Tooling.Azure/Microservices.Tooling.Azure.ARM
+    contents: '*.json'
+    targetFolder: $(Build.ArtifactStagingDirectory)
 
 
 - task: PublishBuildArtifacts@1
