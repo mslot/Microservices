@@ -1,1 +1,1 @@
-﻿
+﻿az keyvault secret set --vault-name 'microservices-vault-test' --name 'ScriptSecret' --value 'AScriptSecret'
