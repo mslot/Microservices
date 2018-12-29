@@ -120,7 +120,7 @@
     },
     {
       "type": "Microsoft.KeyVault/vaults/secrets",
-      "name": "[concat(parameters('keyVaultName'),'ARMSecret']",
+      "name": "[concat(parameters('keyVaultName'),'ARMSecret')]",
       "apiVersion": "2018-02-14",
       "properties": {
         "contentType": "text/plain",
