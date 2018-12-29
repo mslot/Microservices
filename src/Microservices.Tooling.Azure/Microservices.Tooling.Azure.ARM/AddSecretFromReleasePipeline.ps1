@@ -1,2 +1,2 @@
 ﻿$secretvalue = ConvertTo-SecureString 'AScriptSecret' -AsPlainText -Force
-Set-AzureKeyVaultSecret -VaultName 'microservices-vault-test' -Name 'ScriptSecretv3' -SecretValue $secretvalue
+Set-AzureKeyVaultSecret -VaultName '$(KEYVAULT_NAME)' -Name 'ScriptSecretv3' -SecretValue $secretvalue
