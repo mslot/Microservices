@@ -1,0 +1,25 @@
+# Build ASP.NET Core project using Azure Pipelines
+# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core?view=vsts
+
+pool:
+  vmImage: 'Ubuntu 16.04'
+  
+variables:
+  buildConfiguration: 'Release'
+
+trigger:
+  branches:
+    include:
+    - "*"
+  paths:
+    include:
+    - src/Microservices.Tooling.Azure/*
+
+steps:
+- task: CopyFiles@2
+  sourceFolder: src/Microservices.Tooling.Azure/Microservices.Tooling.Azure.ARM
+  contents: '*.json'
+  targetFolder: $(Build.ArtifactStagingDirectory)
+
+
+- task: PublishBuildArtifacts@1
