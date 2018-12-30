@@ -9,7 +9,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="settings.json">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
