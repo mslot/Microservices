@@ -19,7 +19,7 @@ namespace WebAPI
              .ConfigureAppConfiguration((ctx, builder) =>
              {
                  var config = builder.Build();
-                 string keyvaultName = config["KeyVaultName"];
+                 string keyvaultName = $"{config["KeyVaultName"]}-{config["Environment"]}";
                  var keyVaultEndpoint = $"https://{keyvaultName}.vault.azure.net/";
                  if (!string.IsNullOrEmpty(keyVaultEndpoint))
                  {
