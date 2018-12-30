@@ -103,7 +103,8 @@
     "functionsName-v": "[concat('microservices-datafunctions','-',parameters('environment'))]",
     "functionStorageName-v": "[concat('datafunctionstorage',parameters('environment'))]",
     "appServicePlanName-v": "WebApiPlan",
-    "functionsPlanName-v": "FunctionsPlan"
+    "functionsPlanName-v": "FunctionsPlan",
+    "storageAccountid": "[concat(resourceGroup().id,'/providers/','Microsoft.Storage/storageAccounts/', variables('functionStorageName-v'))]"
 
   },
   "resources": [
