@@ -104,7 +104,7 @@
     "functionStorageName-v": "[concat('datafunctionstorage',parameters('environment'))]",
     "appServicePlanName-v": "WebApiPlan",
     "functionsPlanName-v": "FunctionsPlan",
-    "sqlserverName": "[concat('sqlserver',parameters('environment'))]",
+    "sqlserverName": "[concat('microservicessqlserver',parameters('environment'))]",
     "databaseName": "[concat('sqldb',parameters('environment'))]",
     "sqlAdministratorLogin": "[concat('l', uniqueString(resourceGroup().id, '52700761-61A0-448C-BC9D-BBC21A3DF3CB'))]",
     "sqlAdministratorLoginPassword": "[concat('P', uniqueString(resourceGroup().id, '9949715F-D8EF-45F5-9A27-DBC7C8ED1342'), 'x', '!')]",
