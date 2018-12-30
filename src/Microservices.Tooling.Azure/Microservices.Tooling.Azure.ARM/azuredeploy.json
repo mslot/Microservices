@@ -156,8 +156,8 @@
             }
           },
           {
-            "tenantId": "[reference(concat('Microsoft.Web/sites/', variables('webapiName-v'),'/providers/Microsoft.ManagedIdentity/Identities/default'), '2018-02-01').identity.tenantId]",
-            "objectId": "[reference(concat('Microsoft.Web/sites/', variables('webapiName-v'),'/providers/Microsoft.ManagedIdentity/Identities/default'), '2018-02-01').identity.principalId]",
+            "tenantId": "[reference(concat(resourceId('Microsoft.Web/sites', variables('webapiName-v')), '/providers/Microsoft.ManagedIdentity/Identities/default'), '2018-02-01').identity.tenantId]",
+            "objectId": "[reference(concat(resourceId('Microsoft.Web/sites', variables('webapiName-v')), '/providers/Microsoft.ManagedIdentity/Identities/default'), '2018-02-01').identity.principalId]",
             "permissions": {
               "keys": "all",
               "secrets": "all"
