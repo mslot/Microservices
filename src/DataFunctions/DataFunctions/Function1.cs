@@ -14,6 +14,11 @@ using Microsoft.Extensions.Configuration.AzureKeyVault;
 
 namespace DataFunctions
 {
+    public class StartUp
+    {
+
+    }
+
     public static class Function1
     {
         [FunctionName("Function1")]
@@ -28,18 +33,26 @@ namespace DataFunctions
                                 .SetBasePath(context.FunctionAppDirectory)
                                 .AddJsonFile("local.settings.json", optional: true, reloadOnChange: false)
                                 .AddEnvironmentVariables()
+                                .AddUserSecrets<StartUp>()
                                 .Build();
 
             string keyvaultName = $"{config["KeyVaultName"]}-{config["Environment"]}";
             var keyVaultEndpoint = $"https://{keyvaultName}.vault.azure.net/";
-            if (!string.IsNullOrEmpty(keyVaultEndpoint))
+
+            //I cant find any info on how to spin up a IHostingEnvironment for Azure function, so I do this manually. Not optimal.
+            string coreDevEnv = config["ASPNETCORE_ENVIRONMENT"];
+            bool isDev = config["ASPNETCORE_ENVIRONMENT"] == "Development";
+            if (!isDev)
             {
-                var azureServiceTokenProvider = new AzureServiceTokenProvider();
-                var keyVaultClient = new KeyVaultClient(
-                    new KeyVaultClient.AuthenticationCallback(
-                        azureServiceTokenProvider.KeyVaultTokenCallback));
-                builder.AddAzureKeyVault(
-                    keyVaultEndpoint, keyVaultClient, new DefaultKeyVaultSecretManager());
+                if (!string.IsNullOrEmpty(keyVaultEndpoint))
+                {
+                    var azureServiceTokenProvider = new AzureServiceTokenProvider();
+                    var keyVaultClient = new KeyVaultClient(
+                        new KeyVaultClient.AuthenticationCallback(
+                            azureServiceTokenProvider.KeyVaultTokenCallback));
+                    builder.AddAzureKeyVault(
+                        keyVaultEndpoint, keyVaultClient, new DefaultKeyVaultSecretManager());
+                }
             }
 
             config = builder.Build();
