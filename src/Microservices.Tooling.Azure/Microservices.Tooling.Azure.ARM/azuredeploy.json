@@ -153,14 +153,14 @@
             "permissions": {
               "keys": "[parameters('keysPermissions')]",
               "secrets": "[parameters('secretsPermissions')]"
-            },
-            {
-              "tenantId": "[reference(variables('webapiName-v')).identity.tenantId]",
-              "objectId": "[reference(variables('webapiName-v')).identity.principalId]",
-              "permissions": {
-                "keys": "all",
-                "secrets": "all"
-              }
+            }
+          },
+          {
+            "tenantId": "[reference(variables('webapiName-v')).identity.tenantId]",
+            "objectId": "[reference(variables('webapiName-v')).identity.principalId]",
+            "permissions": {
+              "keys": "all",
+              "secrets": "all"
             }
           }
         ],
