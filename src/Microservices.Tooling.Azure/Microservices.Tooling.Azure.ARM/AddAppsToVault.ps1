@@ -1,14 +1,14 @@
 ﻿$webapp=Set-AzureRmWebApp -AssignIdentity $true -Name microservices-webapi-$env:ENVIRONMENT -ResourceGroupName microservices-$env:ENVIRONMENT-rg
 $subscription = Get-AzureRmSubscription
+$context = Get-AzureRmContext
 
+Write-Host $context.Name
 Write-Host $subscription.Name
 Write-Host $subscription.Id
 Write-Host microservices-$env:ENVIRONMENT-rg
 Write-Host microservices-webapi-$env:ENVIRONMENT
 Write-Host $env:KEYVAULTNAME-$env:ENVIRONMENT
 Write-Host $webapp.Identity.PrincipalId
-
-Set-AzureRmContext -SubscriptionId $subscription.Id
 
 Set-AzureRmKeyVaultAccessPolicy -VaultName $env:KEYVAULTNAME-$env:ENVIRONMENT -ObjectId $webapp.Identity.PrincipalId -PermissionsToKeys get,list -PermissionsToSecrets get,list
 
