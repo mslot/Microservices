@@ -28,6 +28,7 @@ namespace DataFunctions
             var builder = new ConfigurationBuilder();
             var config = builder
                                 .SetBasePath(context.FunctionAppDirectory)
+                                .AddJsonFile("settings.json", optional: false, reloadOnChange:false)
                                 .AddJsonFile("local.settings.json", optional: true, reloadOnChange: false)
                                 .AddEnvironmentVariables()
                                 .AddUserSecrets<StartUp>()
