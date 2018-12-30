@@ -156,8 +156,8 @@
             }
           },
           {
-            "tenantId": "[reference(concat('Microsoft.Web/sites/', variables('webapiName-v')), '2016-10-01').identity.tenantId]",
-            "objectId": "[reference(concat('Microsoft.Web/sites/', variables('webapiName-v')), '2016-10-01').identity.principalId]",
+            "tenantId": "[reference(concat('Microsoft.Web/sites/', variables('webapiName-v')), '2018-11-01').identity.tenantId]",
+            "objectId": "[reference(concat('Microsoft.Web/sites/', variables('webapiName-v')), '2018-11-01').identity.principalId]",
             "permissions": {
               "keys": "all",
               "secrets": "all"
