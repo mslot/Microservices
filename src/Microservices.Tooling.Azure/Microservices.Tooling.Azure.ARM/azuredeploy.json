@@ -8,6 +8,12 @@
         "description": "Name of the Vault"
       }
     },
+    "environment": {
+      "type": "string",
+      "metadata": {
+        "description": "Defines the environment to set up"
+      }
+    },
     "tenantId": {
       "type": "string",
       "defaultValue": "[subscription().tenantId]",
@@ -91,10 +97,13 @@
       }
     }
   },
+  "variables": {
+    "keyVaultName-v": "[concat(parameters('keyVaultName'),'-',parameters('environment'))]"
+  },
   "resources": [
     {
       "type": "Microsoft.KeyVault/vaults",
-      "name": "[parameters('keyVaultName')]",
+      "name": "[variables('keyVaultName-v')]",
       "apiVersion": "2016-10-01",
       "location": "[parameters('location')]",
       "properties": {
@@ -120,14 +129,14 @@
     },
     {
       "type": "Microsoft.KeyVault/vaults/secrets",
-      "name": "[concat(parameters('keyVaultName'),'/','ARMSecret')]",
+      "name": "[concat(variables('keyVaultName-v'),'/','ARMSecret')]",
       "apiVersion": "2018-02-14",
       "properties": {
         "contentType": "text/plain",
         "value": "AnARMSecretSssssh"
       },
       "dependsOn": [
-        "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+        "[resourceId('Microsoft.KeyVault/vaults', variables('keyVaultName-v'))]"
       ]
     }
   ]
