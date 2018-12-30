@@ -100,10 +100,83 @@
   "variables": {
     "keyVaultName-v": "[concat(parameters('keyVaultName'),'-',parameters('environment'))]",
     "webapiName-v": "[concat('microservices-webapi','-',parameters('environment'))]",
-    "appServicePlanName-v": "WebApiPlan"
+    "functionsName-v": "[concat('microservices-datafunctions','-',parameters('environment'))]",
+    "functionStorageName-v": "[concat('datafunctionstorage',parameters('environment'))]",
+    "appServicePlanName-v": "WebApiPlan",
+    "functionsPlanName-v": "FunctionsPlan"
 
   },
   "resources": [
+    {
+      "type": "Microsoft.Web/serverfarms",
+      "apiVersion": "2015-04-01",
+      "name": "[variables('functionsPlanName-v')]",
+      "location": "[parameters('location')]",
+      "properties": {
+        "name": "[variables('functionsPlanName-v')]",
+        "computeMode": "Dynamic",
+        "sku": "Dynamic"
+      }
+    },
+    {
+      "apiVersion": "2015-08-01",
+      "type": "Microsoft.Web/sites",
+      "name": "[variables('functionsName-v')]",
+      "location": "[parameters('location')]",
+      "kind": "functionapp",
+      "identity": {
+        "type": "SystemAssigned"
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/serverfarms', variables('functionsPlanName-v'))]",
+        "[resourceId('Microsoft.Storage/storageAccounts', variables('functionStorageName-v'))]"
+      ],
+      "properties": {
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('functionsPlanName-v'))]",
+        "siteConfig": {
+          "appSettings": [
+            {
+              "name": "AzureWebJobsDashboard",
+              "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('functionStorageName-v'), ';AccountKey=', listKeys(variables('storageAccountid'),'2015-05-01-preview').key1)]"
+            },
+            {
+              "name": "AzureWebJobsStorage",
+              "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('functionStorageName-v'), ';AccountKey=', listKeys(variables('storageAccountid'),'2015-05-01-preview').key1)]"
+            },
+            {
+              "name": "WEBSITE_CONTENTAZUREFILECONNECTIONSTRING",
+              "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('functionStorageName-v'), ';AccountKey=', listKeys(variables('storageAccountid'),'2015-05-01-preview').key1)]"
+            },
+            {
+              "name": "WEBSITE_CONTENTSHARE",
+              "value": "[toLower(variables('functionsName-v'))]"
+            },
+            {
+              "name": "FUNCTIONS_EXTENSION_VERSION",
+              "value": "~2"
+            },
+            {
+              "name": "FUNCTIONS_WORKER_RUNTIME",
+              "value": "dotnet"
+            },
+            {
+              "name": "WEBSITE_NODE_DEFAULT_VERSION",
+              "value": "8.11.1"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts",
+      "name": "[variables('functionStorageName-v')]",
+      "apiVersion": "2016-12-01",
+      "location": "[parameters('location')]",
+      "kind": "Storage",
+      "sku": {
+        "name": "Standard_LRS"
+      }
+    },
     {
       "apiVersion": "2017-08-01",
       "type": "Microsoft.Web/serverfarms",
@@ -139,7 +212,8 @@
       "apiVersion": "2016-10-01",
       "location": "[parameters('location')]",
       "dependsOn": [
-        "[resourceId('Microsoft.Web/sites', variables('webapiName-v'))]"
+        "[resourceId('Microsoft.Web/sites', variables('webapiName-v'))]",
+        "[resourceId('Microsoft.Web/sites', variables('functionsPlanName-v'))]"
       ],
       "properties": {
         "enabledForDeployment": "[parameters('enableVaultForDeployment')]",
@@ -150,6 +224,14 @@
           {
             "tenantId": "[parameters('tenantId')]",
             "objectId": "[parameters('objectId')]",
+            "permissions": {
+              "keys": "[parameters('keysPermissions')]",
+              "secrets": "[parameters('secretsPermissions')]"
+            }
+          },
+          {
+            "tenantId": "[reference(concat(resourceId('Microsoft.Web/sites', variables('functionsPlanName-v')), '/providers/Microsoft.ManagedIdentity/Identities/default'), '2015-08-31-PREVIEW').tenantId]",
+            "objectId": "[reference(concat(resourceId('Microsoft.Web/sites', variables('functionsPlanName-v')), '/providers/Microsoft.ManagedIdentity/Identities/default'), '2015-08-31-PREVIEW').principalId]",
             "permissions": {
               "keys": "[parameters('keysPermissions')]",
               "secrets": "[parameters('secretsPermissions')]"
