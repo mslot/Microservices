@@ -1,4 +1,6 @@
-﻿$webapp=Set-AzureRmWebApp -AssignIdentity $true -Name microservices-webapi-$env:ENVIRONMENT -ResourceGroupName microservices-$env:ENVIRONMENT-rg
+﻿# This script isnt used. It works locally, but not when I run it from release pipeline in devops
+
+$webapp=Set-AzureRmWebApp -AssignIdentity $true -Name microservices-webapi-$env:ENVIRONMENT -ResourceGroupName microservices-$env:ENVIRONMENT-rg
 
 $subscription = Get-AzureRmSubscription
 $context = Get-AzureRmContext

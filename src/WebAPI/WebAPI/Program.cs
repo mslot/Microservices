@@ -18,17 +18,23 @@ namespace WebAPI
          WebHost.CreateDefaultBuilder(args)
              .ConfigureAppConfiguration((ctx, builder) =>
              {
-                 var config = builder.Build();
-                 string keyvaultName = $"{config["KeyVaultName"]}-{config["Environment"]}";
-                 var keyVaultEndpoint = $"https://{keyvaultName}.vault.azure.net/";
-                 if (!string.IsNullOrEmpty(keyVaultEndpoint))
+                 var environment = System.Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+                 var isDevelopment = environment == EnvironmentName.Development;
+
+                 if (!isDevelopment)
                  {
-                     var azureServiceTokenProvider = new AzureServiceTokenProvider();
-                     var keyVaultClient = new KeyVaultClient(
-                         new KeyVaultClient.AuthenticationCallback(
-                             azureServiceTokenProvider.KeyVaultTokenCallback));
-                     builder.AddAzureKeyVault(
-                         keyVaultEndpoint, keyVaultClient, new DefaultKeyVaultSecretManager());
+                     var config = builder.Build();
+                     string keyvaultName = $"{config["KeyVaultName"]}-{config["Environment"]}";
+                     var keyVaultEndpoint = $"https://{keyvaultName}.vault.azure.net/";
+                     if (!string.IsNullOrEmpty(keyVaultEndpoint))
+                     {
+                         var azureServiceTokenProvider = new AzureServiceTokenProvider();
+                         var keyVaultClient = new KeyVaultClient(
+                             new KeyVaultClient.AuthenticationCallback(
+                                 azureServiceTokenProvider.KeyVaultTokenCallback));
+                         builder.AddAzureKeyVault(
+                             keyVaultEndpoint, keyVaultClient, new DefaultKeyVaultSecretManager());
+                     }
                  }
              }
           ).UseStartup<Startup>()
