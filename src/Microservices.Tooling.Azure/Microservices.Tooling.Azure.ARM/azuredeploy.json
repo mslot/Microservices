@@ -104,10 +104,61 @@
     "functionStorageName-v": "[concat('datafunctionstorage',parameters('environment'))]",
     "appServicePlanName-v": "WebApiPlan",
     "functionsPlanName-v": "FunctionsPlan",
+    "sqlserverName": "[concat('sqlserver',parameters('environment'))]",
+    "databaseName": "[concat('sqldb',parameters('environment'))]",
+    "sqlAdministratorLogin": "[concat('l', uniqueString(resourceGroup().id, '52700761-61A0-448C-BC9D-BBC21A3DF3CB'))]",
+    "sqlAdministratorLoginPassword": "[concat('P', uniqueString(resourceGroup().id, '9949715F-D8EF-45F5-9A27-DBC7C8ED1342'), 'x', '!')]",
     "storageAccountid": "[concat(resourceGroup().id,'/providers/','Microsoft.Storage/storageAccounts/', variables('functionStorageName-v'))]"
 
   },
   "resources": [
+    {
+      "name": "[variables('sqlserverName')]",
+      "type": "Microsoft.Sql/servers",
+      "location": "[parameters('location')]",
+      "tags": {
+        "displayName": "SqlServer"
+      },
+      "apiVersion": "2014-04-01",
+      "properties": {
+        "administratorLogin": "[variables('sqlAdministratorLogin')]",
+        "administratorLoginPassword": "[variables('sqlAdministratorLoginPassword')]",
+        "version": "12.0"
+      },
+      "resources": [
+        {
+          "name": "[variables('databaseName')]",
+          "type": "databases",
+          "location": "[parameters('location')]",
+          "tags": {
+            "displayName": "Database"
+          },
+          "apiVersion": "2015-01-01",
+          "dependsOn": [
+            "[variables('sqlserverName')]"
+          ],
+          "properties": {
+            "edition": "Basic",
+            "collation": "SQL_Latin1_General_CP1_CI_AS",
+            "maxSizeBytes": "1073741824",
+            "requestedServiceObjectiveName": "Basic"
+          }
+        },
+        {
+          "type": "firewallrules",
+          "apiVersion": "2014-04-01",
+          "dependsOn": [
+            "[variables('sqlserverName')]"
+          ],
+          "location": "[parameters('location')]",
+          "name": "AllowAllWindowsAzureIps",
+          "properties": {
+            "endIpAddress": "0.0.0.0",
+            "startIpAddress": "0.0.0.0"
+          }
+        }
+      ]
+    },
     {
       "type": "Microsoft.Web/serverfarms",
       "apiVersion": "2015-04-01",
@@ -260,6 +311,18 @@
       "properties": {
         "contentType": "text/plain",
         "value": "AnARMSecretSssssh"
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.KeyVault/vaults', variables('keyVaultName-v'))]"
+      ]
+    },
+    {
+      "type": "Microsoft.KeyVault/vaults/secrets",
+      "name": "[concat(variables('keyVaultName-v'),'/','MSSqlConnectionString')]",
+      "apiVersion": "2018-02-14",
+      "properties": {
+        "contentType": "text/plain",
+        "value": "[concat('Data Source=tcp:', reference(concat('Microsoft.Sql/servers/', variables('sqlserverName'))).fullyQualifiedDomainName, ',1433;Initial Catalog=', variables('databaseName'), ';User Id=', variables('sqlAdministratorLogin'), '@', reference(concat('Microsoft.Sql/servers/', variables('sqlserverName'))).fullyQualifiedDomainName, ';Password=', variables('sqlAdministratorLoginPassword'), ';')]"
       },
       "dependsOn": [
         "[resourceId('Microsoft.KeyVault/vaults', variables('keyVaultName-v'))]"
