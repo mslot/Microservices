@@ -2,7 +2,7 @@
 
 Write-Host microservices-$env:ENVIRONMENT-rg
 Write-Host microservices-webapi-$env:ENVIRONMENT
-Write-Host env:KEYVAULTNAME-$env:ENVIRONMENT
+Write-Host $env:KEYVAULTNAME-$env:ENVIRONMENT
 Write-Host $webapp.Identity.PrincipalId
 
 Set-AzureRmKeyVaultAccessPolicy -VaultName $env:KEYVAULTNAME-$env:ENVIRONMENT -ObjectId $webapp.Identity.PrincipalId -PermissionsToKeys get,list -PermissionsToSecrets get,list
