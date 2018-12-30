@@ -159,8 +159,8 @@
             "tenantId": "[reference(concat(resourceId('Microsoft.Web/sites', variables('webapiName-v')), '/providers/Microsoft.ManagedIdentity/Identities/default'), '2015-08-31-PREVIEW').tenantId]",
             "objectId": "[reference(concat(resourceId('Microsoft.Web/sites', variables('webapiName-v')), '/providers/Microsoft.ManagedIdentity/Identities/default'), '2015-08-31-PREVIEW').principalId]",
             "permissions": {
-              "keys": "all",
-              "secrets": "all"
+              "keys": "[parameters('keysPermissions')]",
+              "secrets": "[parameters('secretsPermissions')]"
             }
           }
         ],
