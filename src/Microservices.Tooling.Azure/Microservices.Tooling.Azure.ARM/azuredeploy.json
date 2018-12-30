@@ -98,6 +98,7 @@
     }
   },
   "variables": {
+    "NotUsedOnlyForTestDeploy": null,
     "keyVaultName-v": "[concat(parameters('keyVaultName'),'-',parameters('environment'))]",
     "webapiName-v": "[concat('microservices-webapi','-',parameters('environment'))]",
     "functionsName-v": "[concat('microservices-datafunctions','-',parameters('environment'))]",
