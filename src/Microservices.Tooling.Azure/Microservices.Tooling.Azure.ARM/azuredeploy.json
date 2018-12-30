@@ -214,7 +214,7 @@
       "location": "[parameters('location')]",
       "dependsOn": [
         "[resourceId('Microsoft.Web/sites', variables('webapiName-v'))]",
-        "[resourceId('Microsoft.Web/sites', variables('functionsPlanName-v'))]"
+        "[resourceId('Microsoft.Web/sites', variables('functionsName-v'))]"
       ],
       "properties": {
         "enabledForDeployment": "[parameters('enableVaultForDeployment')]",
