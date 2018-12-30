@@ -126,7 +126,6 @@
       "identity": {
         "type": "SystemAssigned"
       },
-      "comments": "This is the web app, also the default 'nameless' slot.",
       "properties": {
         "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanName-v'))]"
       },
@@ -154,6 +153,14 @@
             "permissions": {
               "keys": "[parameters('keysPermissions')]",
               "secrets": "[parameters('secretsPermissions')]"
+            },
+            {
+              "tenantId": "[reference(variables('webapiName-v')).identity.tenantId]",
+              "objectId": "[reference(variables('webapiName-v')).identity.principalId]",
+              "permissions": {
+                "keys": "all",
+                "secrets": "all"
+              }
             }
           }
         ],
