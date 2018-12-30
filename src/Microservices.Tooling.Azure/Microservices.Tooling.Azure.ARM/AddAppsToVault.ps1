@@ -1,4 +1,5 @@
 ﻿$webapp=Set-AzureRmWebApp -AssignIdentity $true -Name microservices-webapi-$env:ENVIRONMENT -ResourceGroupName microservices-$env:ENVIRONMENT-rg
+
 $subscription = Get-AzureRmSubscription
 $context = Get-AzureRmContext
 

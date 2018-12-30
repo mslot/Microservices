@@ -98,14 +98,50 @@
     }
   },
   "variables": {
-    "keyVaultName-v": "[concat(parameters('keyVaultName'),'-',parameters('environment'))]"
+    "keyVaultName-v": "[concat(parameters('keyVaultName'),'-',parameters('environment'))]",
+    "webapiName-v": "[concat('microservices-webapi','-',parameters('environment'))]",
+    "appServicePlanName-v": "WebApiPlan"
+
   },
   "resources": [
+    {
+      "apiVersion": "2017-08-01",
+      "type": "Microsoft.Web/serverfarms",
+      "kind": "app",
+      "name": "[variables('appServicePlanName-v')]",
+      "location": "[parameters('location')]",
+      "comments": "This app service plan is used for the web app and slots.",
+      "properties": {},
+      "dependsOn": [],
+      "sku": {
+        "name": "S1"
+      }
+    },
+    {
+      "apiVersion": "2016-08-01",
+      "type": "Microsoft.Web/sites",
+      "kind": "app",
+      "name": "[variables('webapiName-v')]",
+      "location": "[parameters('location')]",
+      "identity": {
+        "type": "SystemAssigned"
+      },
+      "comments": "This is the web app, also the default 'nameless' slot.",
+      "properties": {
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanName-v'))]"
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanName-v'))]"
+      ]
+    },
     {
       "type": "Microsoft.KeyVault/vaults",
       "name": "[variables('keyVaultName-v')]",
       "apiVersion": "2016-10-01",
       "location": "[parameters('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/sites', variables('webapiName-v'))]"
+      ],
       "properties": {
         "enabledForDeployment": "[parameters('enableVaultForDeployment')]",
         "enabledForDiskEncryption": "[parameters('enableVaultForDiskEncryption')]",
