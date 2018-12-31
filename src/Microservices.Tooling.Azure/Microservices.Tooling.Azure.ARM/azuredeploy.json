@@ -311,8 +311,8 @@
             }
           },
           {
-            "tenantId": "[reference(concat(resourceId('Microsoft.Web/sites/slots', variables('webapiName-v'),'/','Preview'), '/providers/Microsoft.ManagedIdentity/Identities/default'), '2015-08-31-PREVIEW').tenantId]",
-            "objectId": "[reference(concat(resourceId('Microsoft.Web/sites/slots', variables('webapiName-v'),'/','Preview'), '/providers/Microsoft.ManagedIdentity/Identities/default'), '2015-08-31-PREVIEW').principalId]",
+            "tenantId": "[reference(concat(resourceId('Microsoft.Web/sites/slots', variables('webapiName-v'),'Preview'), '/providers/Microsoft.ManagedIdentity/Identities/default'), '2015-08-31-PREVIEW').tenantId]",
+            "objectId": "[reference(concat(resourceId('Microsoft.Web/sites/slots', variables('webapiName-v'),'Preview'), '/providers/Microsoft.ManagedIdentity/Identities/default'), '2015-08-31-PREVIEW').principalId]",
             "permissions": {
               "keys": "[parameters('keysPermissions')]",
               "secrets": "[parameters('secretsPermissions')]"
