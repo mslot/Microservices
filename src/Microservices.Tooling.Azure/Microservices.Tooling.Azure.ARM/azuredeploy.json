@@ -177,6 +177,9 @@
       "name": "[concat(variables('webapiName-v'), '/','Preview')]",
       "kind": "app",
       "location": "[parameters('location')]",
+      "identity": {
+        "type": "SystemAssigned"
+      },
       "comments": "This specifies the web app slots.",
       "tags": {
         "displayName": "WebAppSlots"
@@ -302,6 +305,14 @@
           {
             "tenantId": "[reference(concat(resourceId('Microsoft.Web/sites', variables('functionsName-v')), '/providers/Microsoft.ManagedIdentity/Identities/default'), '2015-08-31-PREVIEW').tenantId]",
             "objectId": "[reference(concat(resourceId('Microsoft.Web/sites', variables('functionsName-v')), '/providers/Microsoft.ManagedIdentity/Identities/default'), '2015-08-31-PREVIEW').principalId]",
+            "permissions": {
+              "keys": "[parameters('keysPermissions')]",
+              "secrets": "[parameters('secretsPermissions')]"
+            }
+          },
+          {
+            "tenantId": "[reference(concat(resourceId('Microsoft.Web/sites/slots', variables('webapiName-v'),'/','Preview'), '/providers/Microsoft.ManagedIdentity/Identities/default'), '2015-08-31-PREVIEW').tenantId]",
+            "objectId": "[reference(concat(resourceId('Microsoft.Web/sites/slots', variables('webapiName-v'),'/','Preview'), '/providers/Microsoft.ManagedIdentity/Identities/default'), '2015-08-31-PREVIEW').principalId]",
             "permissions": {
               "keys": "[parameters('keysPermissions')]",
               "secrets": "[parameters('secretsPermissions')]"
