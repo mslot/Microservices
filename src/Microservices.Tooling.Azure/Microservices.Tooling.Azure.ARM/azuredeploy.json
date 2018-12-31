@@ -185,7 +185,7 @@
         "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanName-v'))]"
       },
       "dependsOn": [
-        "[resourceId('Microsoft.Web/Sites', variables('appServicePlanName-v'))]"
+        "[resourceId('Microsoft.Web/Sites', variables('webapiName-v'))]"
       ]
     },
     {
