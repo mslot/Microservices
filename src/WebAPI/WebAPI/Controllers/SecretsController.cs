@@ -20,9 +20,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public ActionResult<IEnumerable<string>> Get(string name)
         {
-            return new string[] { _configuration["ARMSecret"] };
+            return new string[] { _configuration[name] };
         }
     }
 }

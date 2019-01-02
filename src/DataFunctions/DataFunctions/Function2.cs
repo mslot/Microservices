@@ -55,12 +55,12 @@ namespace DataFunctions
 
         }
 
-        [FunctionName("Function2")]
-        public static void Run([TimerTrigger("*/5 * * * * *")]TimerInfo myTimer, ILogger log)
-        {
-            _config.Reload(); //We somehow need to reload config so we can get changes in Vault
-            log.LogInformation($"RuntimeTest: {_config["RuntimeTest"]}");
-        }
+        //[FunctionName("Function2")]
+        //public static void Run([TimerTrigger("*/5 * * * * *")]TimerInfo myTimer, ILogger log)
+        //{
+        //    _config.Reload(); //We somehow need to reload config so we can get changes in Vault
+        //    log.LogInformation($"RuntimeTest: {_config["RuntimeTest"]}");
+        //}
 
     }
 }
