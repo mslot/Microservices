@@ -110,6 +110,10 @@
     }
   },
   "variables": {
+    "queueStorageConnectionStringSecretNameResourceId-v": "[resourceId('Microsoft.KeyVault/vaults/secrets',variables('queueStorageConnectionStringSecretName-v'))]",
+    "storageAccountResourceId": "[resourceId('Microsoft.Storage/storageAccounts',variables('queueStorageName-v'))]",
+    "queueStorageConnectionStringSecretName-v": "[concat('testQueueStorageConnectionSecret','-',parameters('environment'))]",
+    "queueStorageName-v": "[concat('testQueueStorage','-',parameters('environment'))]",
     "keyVaultName-v": "[concat(parameters('keyVaultName'),'-',parameters('environment'))]",
     "webapiName-v": "[concat('microservices-webapi','-',parameters('environment'))]",
     "functionsName-v": "[concat('microservices-datafunctions','-',parameters('environment'))]",
@@ -220,6 +224,10 @@
         "siteConfig": {
           "appSettings": [
             {
+              "name": "StorageQueueConnectionString",
+              "value": "[concat('@Microsoft.KeyVault(SecretUri=', reference(variables('queueStorageConnectionStringSecretNameResourceId-v')).secretUriWithVersion, ')')]"
+            },
+            {
               "name": "AzureWebJobsDashboard",
               "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('functionStorageName-v'), ';AccountKey=', listKeys(variables('storageAccountid'),'2015-05-01-preview').key1)]"
             },
@@ -260,6 +268,19 @@
       "sku": {
         "name": "Standard_LRS"
       }
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts",
+      "name": "[variables('queueStorageName-v')]",
+      "apiVersion": "2016-12-01",
+      "location": "[parameters('location')]",
+      "kind": "Storage",
+      "sku": {
+        "name": "Standard_LRS"
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.KeyVault/vaults', variables('keyVaultName-v'))]"
+      ]
     },
     {
       "apiVersion": "2017-08-01",
@@ -355,6 +376,17 @@
       "dependsOn": [
         "[resourceId('Microsoft.KeyVault/vaults', variables('keyVaultName-v'))]"
       ]
+    },
+    {
+      "type": "secrets",
+      "name": "[variables('queueStorageConnectionStringSecretName-v')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.KeyVault/vaults/', variables('keyVaultName-v'))]",
+        "[resourceId('Microsoft.Storage/storageAccounts', variables('queueStorageName-v'))]"
+      ],
+      "properties": {
+        "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('queueStorageName-v'), ';AccountKey=', listKeys(variables('storageAccountResourceId'),'2015-05-01-preview').key1)]"
+      }
     },
     {
       "type": "Microsoft.KeyVault/vaults/secrets",
