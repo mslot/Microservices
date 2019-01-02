@@ -314,8 +314,7 @@
       "apiVersion": "2016-10-01",
       "location": "[parameters('location')]",
       "dependsOn": [
-        "[resourceId('Microsoft.Web/sites', variables('webapiName-v'))]",
-        "[resourceId('Microsoft.Web/sites', variables('functionsName-v'))]"
+        "[resourceId('Microsoft.Web/sites', variables('webapiName-v'))]"
       ],
       "properties": {
         "enabledForDeployment": "[parameters('enableVaultForDeployment')]",
