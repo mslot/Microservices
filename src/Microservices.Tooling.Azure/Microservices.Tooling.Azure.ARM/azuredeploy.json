@@ -379,8 +379,7 @@
       "name": "[concat(variables('keyVaultName-v'),'/', variables('queueStorageConnectionStringSecretName-v'))]",
       "apiVersion": "2018-02-14",
       "dependsOn": [
-        "[resourceId('Microsoft.KeyVault/vaults/', variables('keyVaultName-v'))]",
-        "[resourceId('Microsoft.Storage/storageAccounts', variables('queueStorageName-v'))]"
+        "[resourceId('Microsoft.KeyVault/vaults/', variables('keyVaultName-v'))]"
       ],
       "properties": {
         "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('queueStorageName-v'), ';AccountKey=', listKeys(variables('storageAccountResourceId'),'2015-05-01-preview').key1)]"
