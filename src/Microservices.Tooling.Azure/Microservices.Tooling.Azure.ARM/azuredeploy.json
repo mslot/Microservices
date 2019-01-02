@@ -277,10 +277,7 @@
       "kind": "Storage",
       "sku": {
         "name": "Standard_LRS"
-      },
-      "dependsOn": [
-        "[resourceId('Microsoft.KeyVault/vaults', variables('keyVaultName-v'))]"
-      ]
+      }
     },
     {
       "apiVersion": "2017-08-01",
