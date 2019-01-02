@@ -113,7 +113,7 @@
     "queueStorageConnectionStringSecretNameResourceId-v": "[resourceId('Microsoft.KeyVault/vaults/secrets',variables('keyVaultName-v'),variables('queueStorageConnectionStringSecretName-v'))]",
     "storageAccountResourceId": "[resourceId('Microsoft.Storage/storageAccounts',variables('queueStorageName-v'))]",
     "queueStorageConnectionStringSecretName-v": "[concat('testQueueStorageConnectionSecret','-',parameters('environment'))]",
-    "queueStorageName-v": "[concat('testqueuestorage',parameters('environment'))]",
+    "queueStorageName-v": "[concat('dftestqueuestorage',parameters('environment'))]",
     "keyVaultName-v": "[concat(parameters('keyVaultName'),'-',parameters('environment'))]",
     "webapiName-v": "[concat('microservices-webapi','-',parameters('environment'))]",
     "functionsName-v": "[concat('microservices-datafunctions','-',parameters('environment'))]",
