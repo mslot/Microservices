@@ -24,7 +24,7 @@ namespace DataFunctions
             string current = Environment.CurrentDirectory;
             string dir = current;
 
-            if (current.StartsWith(@"D:\windows")) //this is a hack to get things working on Azure. I need to figure out a better way of doing this.
+            if (current.Contains("system32")) //this is a hack to get things working on Azure. I need to figure out a better way of doing this.
                 dir = @"D:\home\site\wwwroot";
 
             return dir;
