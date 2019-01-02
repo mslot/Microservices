@@ -2,6 +2,18 @@
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
+    "dbUserNameSeed": {
+      "type": "string",
+      "metadata": {
+        "description": "A seed used to generate the username for the MSSQL database. This is used so a potential bad person who gets access to the repository cant figure out the username. It is possible, but then he also need to gain access to what ever used for providing the seed."
+      }
+    },
+    "dbPasswordSeed": {
+      "type": "string",
+      "metadata": {
+        "description": "A seed used to generate the password for the MSSQL database. This is used so a potential bad person who gets access to the repository cant figure out the password. It is possible, but then he also need to gain access to what ever used for providing the seed."
+      }
+    },
     "keyVaultName": {
       "type": "string",
       "metadata": {
@@ -98,7 +110,6 @@
     }
   },
   "variables": {
-    "NotUsedOnlyForTestDeploy": "",
     "keyVaultName-v": "[concat(parameters('keyVaultName'),'-',parameters('environment'))]",
     "webapiName-v": "[concat('microservices-webapi','-',parameters('environment'))]",
     "functionsName-v": "[concat('microservices-datafunctions','-',parameters('environment'))]",
@@ -107,8 +118,8 @@
     "functionsPlanName-v": "FunctionsPlan",
     "sqlserverName": "[concat('microservicessqlserver',parameters('environment'))]",
     "databaseName": "[concat('sqldb',parameters('environment'))]",
-    "sqlAdministratorLogin": "[concat('l', uniqueString(resourceGroup().id, '52700761-61A0-448C-BC9D-BBC21A3DF3CB'))]",
-    "sqlAdministratorLoginPassword": "[concat('P', uniqueString(resourceGroup().id, '9949715F-D8EF-45F5-9A27-DBC7C8ED1342'), 'x', '!')]",
+    "sqlAdministratorLogin": "[concat('l', uniqueString(resourceGroup().id, parameters('dbUserNameSeed')))]",
+    "sqlAdministratorLoginPassword": "[concat('P', uniqueString(resourceGroup().id, parameters('dbPasswordSeed')), 'x', '!')]",
     "storageAccountid": "[concat(resourceGroup().id,'/providers/','Microsoft.Storage/storageAccounts/', variables('functionStorageName-v'))]"
 
   },

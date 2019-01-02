@@ -10,6 +10,12 @@
     },
     "environment": {
       "value": null
+    },
+    "dbUserNameSeed": {
+      "value": null
+    },
+    "dbPasswordSeed": {
+      "value": null
     }
   }
 }
