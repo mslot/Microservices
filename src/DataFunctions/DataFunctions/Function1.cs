@@ -54,7 +54,7 @@ namespace DataFunctions
             }
 
             config = builder.Build();
-            string secret = config["ARMSecret"];
+            string secret = config["RuntimeTest"];
 
             return secret != null
                 ? (ActionResult)new OkObjectResult($"Hello (updated 4), {secret}")
