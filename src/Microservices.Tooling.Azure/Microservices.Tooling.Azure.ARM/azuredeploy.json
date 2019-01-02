@@ -118,8 +118,8 @@
     "functionsPlanName-v": "FunctionsPlan",
     "sqlserverName": "[concat('microservicessqlserver',parameters('environment'))]",
     "databaseName": "[concat('sqldb',parameters('environment'))]",
-    "sqlAdministratorLogin": "[concat('l', uniqueString(resourceGroup().id, parameters('dbUserNameSeed')))]",
-    "sqlAdministratorLoginPassword": "[concat('P', uniqueString(resourceGroup().id, parameters('dbPasswordSeed')), 'x', '!')]",
+    "sqlAdministratorLogin": "[concat('l', uniqueString(resourceGroup().id, '7D82BC34-B3E3-474D-A5E7-3951A246CD7A'))]",
+    "sqlAdministratorLoginPassword": "[concat('P', uniqueString(resourceGroup().id, '56792299-BB03-4685-AA79-7197E429F827'), 'x', '!')]",
     "storageAccountid": "[concat(resourceGroup().id,'/providers/','Microsoft.Storage/storageAccounts/', variables('functionStorageName-v'))]"
 
   },
