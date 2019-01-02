@@ -110,7 +110,7 @@
     }
   },
   "variables": {
-    "queueStorageConnectionStringSecretNameResourceId-v": "[resourceId('Microsoft.KeyVault/vaults/secrets',variables('queueStorageConnectionStringSecretName-v'))]",
+    "queueStorageConnectionStringSecretNameResourceId-v": "[resourceId('Microsoft.KeyVault/vaults/secrets',variables('keyVaultName-v'),variables('queueStorageConnectionStringSecretName-v'))]",
     "storageAccountResourceId": "[resourceId('Microsoft.Storage/storageAccounts',variables('queueStorageName-v'))]",
     "queueStorageConnectionStringSecretName-v": "[concat('testQueueStorageConnectionSecret','-',parameters('environment'))]",
     "queueStorageName-v": "[concat('testQueueStorage','-',parameters('environment'))]",
@@ -379,6 +379,7 @@
     },
     {
       "type": "Microsoft.KeyVault/vaults/secrets",
+      "name": "[concat(variables('keyVaultName-v'),'/', variables('queueStorageConnectionStringSecretName-v'))]",
       "name": "[variables('queueStorageConnectionStringSecretName-v')]",
       "apiVersion": "2018-02-14",
       "dependsOn": [
