@@ -24,7 +24,7 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: pack
-    packDirectory: '$(build.artifactStagingDirectory)'
+    packDirectory: '$(build.artifactStagingDirectory)/PreRelease'
     configuration: $(BuildConfiguration)
     packagesToPack: 'src/Microservice.Extensions.NugetFeedTest/Microservice.Extensions.NugetFeedTest/Microservice.Extensions.NugetFeedTest.csproj'
     versioningScheme: byPrereleaseNumber
@@ -36,7 +36,7 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: pack
-    packDirectory: '$(build.artifactStagingDirectory)'
+    packDirectory: '$(build.artifactStagingDirectory)/Release'
     configuration: $(BuildConfiguration)
     packagesToPack: 'src/Microservice.Extensions.NugetFeedTest/Microservice.Extensions.NugetFeedTest/Microservice.Extensions.NugetFeedTest.csproj'
     versioningScheme: byBuildNumber
