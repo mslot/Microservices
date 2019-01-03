@@ -33,4 +33,15 @@ steps:
     patchVersion: $(Patch)
     packTimezone: 'utc'
 
+- task: DotNetCoreCLI@2
+  inputs:
+    command: pack
+    packDirectory: '$(build.artifactStagingDirectory)'
+    configuration: $(BuildConfiguration)
+    packagesToPack: 'src/Microservice.Extensions.NugetFeedTest/Microservice.Extensions.NugetFeedTest/Microservice.Extensions.NugetFeedTest.csproj'
+    versioningScheme: off
+    majorVersion: $(Major)
+    minorVersion: $(Minor)
+    patchVersion: $(Patch)
+
 - task: PublishBuildArtifacts@1
