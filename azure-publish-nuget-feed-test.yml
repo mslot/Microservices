@@ -21,24 +21,19 @@ trigger:
     - src/Microservice.Extensions.NugetFeedTest/*
 
 steps:
+- task: gittools.gitversion.gitversion-task.GitVersion@4
+  displayName: GitVersion
+  inputs:
+    preferBundledVersion: false
+
 - task: DotNetCoreCLI@2
   inputs:
     command: pack
     packDirectory: '$(build.artifactStagingDirectory)/PreRelease'
     configuration: $(BuildConfiguration)
     packagesToPack: 'src/Microservice.Extensions.NugetFeedTest/Microservice.Extensions.NugetFeedTest/Microservice.Extensions.NugetFeedTest.csproj'
-    versioningScheme: byPrereleaseNumber
-    majorVersion: $(Major)
-    minorVersion: $(Minor)
-    patchVersion: $(Patch)
-    packTimezone: 'utc'
+    versioningScheme: byEnvVar
+    versionEnvVar: GITVERSION_FullSemVer
 
-- task: DotNetCoreCLI@2
-  inputs:
-    command: pack
-    packDirectory: '$(build.artifactStagingDirectory)/Release'
-    configuration: $(BuildConfiguration)
-    packagesToPack: 'src/Microservice.Extensions.NugetFeedTest/Microservice.Extensions.NugetFeedTest/Microservice.Extensions.NugetFeedTest.csproj'
-    versioningScheme: byBuildNumber
 
 - task: PublishBuildArtifacts@1
