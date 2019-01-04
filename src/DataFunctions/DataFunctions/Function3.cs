@@ -24,6 +24,9 @@ namespace DataFunctions
                         .AddUserSecrets<StartUp>();
         private static IConfigurationRoot _config;
 
+        private static DateTime _reload = DateTime.UtcNow;
+        private static object _lock = new object();
+
         private static string GetWorkingDir()
         {
             string current = Environment.CurrentDirectory;
@@ -64,11 +67,21 @@ namespace DataFunctions
         [FunctionName("Function3")]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)]
-            HttpRequest req, 
+            HttpRequest req,
             [Queue("testqueue", Connection ="StorageQueueConnectionString")]
             ICollector<string> outputQueueItem,
             ILogger log)
         {
+            var now = DateTime.UtcNow;
+            if (now - _reload > new TimeSpan(hours: 0, minutes: 10, seconds: 0))
+            {
+                lock (_lock) //I know this is not pretty, but i want to see if the runtime supports this. I am still not sure how azure function runs and reuse code, but i need some logic to reload config from time to time
+                {
+                    _config.Reload();
+                    _reload = DateTime.UtcNow;
+                }
+            }
+
             string secret = _config["ARMSecret"];
 
             outputQueueItem.Add(secret);
