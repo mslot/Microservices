@@ -21,6 +21,11 @@ trigger:
     - src/Microservice.Extensions.NugetFeedTest/*
 
 steps:
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'restore'
+    projects: '**/*.csproj'
+  
 - task: gittools.gitversion.gitversion-task.GitVersion@4
   displayName: GitVersion
   inputs:
