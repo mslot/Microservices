@@ -73,7 +73,7 @@ namespace DataFunctions
 
             outputQueueItem.Add(secret);
 
-            return ? (ActionResult)new OkObjectResult($"ARMSecret, {secret}")
+            return new OkObjectResult($"ARMSecret, {secret}");
         }
     }
 }
