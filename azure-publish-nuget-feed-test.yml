@@ -2,15 +2,11 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core?view=vsts
 
 pool:
-  vmImage: 'Ubuntu 16.04'
+  vmImage: vs2017-win2016
   
 variables:
   buildConfiguration: 'Release'
-  Major: '2'
-  Minor: '0'
-  Patch: '2'
-
-name: $(BuildDefinitionName)_$(Major).$(Minor).$(Patch)
+  releaseVersion: $(GITVERSION.Major).$(GITVERSION.Minor).666
 
 trigger:
   branches:
@@ -21,6 +17,11 @@ trigger:
     - src/Microservice.Extensions.NugetFeedTest/*
 
 steps:
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'restore'
+    projects: '**/*.csproj'
+  
 - task: gittools.gitversion.gitversion-task.GitVersion@4
   displayName: GitVersion
   inputs:
@@ -35,5 +36,13 @@ steps:
     versioningScheme: byEnvVar
     versionEnvVar: GITVERSION_FullSemVer
 
+- task: DotNetCoreCLI@2
+  inputs:
+    command: pack
+    packDirectory: '$(build.artifactStagingDirectory)/Release'
+    configuration: $(BuildConfiguration)
+    packagesToPack: 'src/Microservice.Extensions.NugetFeedTest/Microservice.Extensions.NugetFeedTest/Microservice.Extensions.NugetFeedTest.csproj'
+    versioningScheme: byEnvVar
+    versionEnvVar: releaseVersion
 
 - task: PublishBuildArtifacts@1
