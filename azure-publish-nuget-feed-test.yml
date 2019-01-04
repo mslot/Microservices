@@ -6,7 +6,7 @@ pool:
   
 variables:
   buildConfiguration: 'Release'
-  releaseVersion: $(GITVERSION_Major).$(GITVERSION_Minor).$(GITVERSION_Patch)
+  releaseVersion: $(GITVERSION.Major).$(GITVERSION.Minor).$(GITVERSION.Patch)
 
 trigger:
   branches:
