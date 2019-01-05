@@ -31,6 +31,7 @@ steps:
    Write-Host ("##vso[task.setvariable variable=Release_Version;]$Release_Version")
    Write-Host "hello world"
    Write-Host $Release_Version
+   Write-Host $env:GITVERSION_MAJORMINORPATCH
   displayName: 'Setting Release variable'
 
 - task: DotNetCoreCLI@2
@@ -49,6 +50,6 @@ steps:
     configuration: $(BuildConfiguration)
     packagesToPack: 'src/Microservice.Extensions.NugetFeedTest/Microservice.Extensions.NugetFeedTest/Microservice.Extensions.NugetFeedTest.csproj'
     versioningScheme: byEnvVar
-    versionEnvVar: Release_Version
+    versionEnvVar: GITVERSION_MAJORMINORPATCH
 
 - task: PublishBuildArtifacts@1
