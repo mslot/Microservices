@@ -26,7 +26,6 @@ steps:
   inputs:
     preferBundledVersion: false
 
-steps:
 - powershell: |
    $Release_Version = "$env:GITVERSION_MAJORMINORPATCH"
    Write-Host ("##vso[task.setvariable variable=Release_Version;]$Release_Version")
