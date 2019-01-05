@@ -29,6 +29,8 @@ steps:
 - powershell: |
    $Release_Version = "$env:GITVERSION_MAJORMINORPATCH"
    Write-Host ("##vso[task.setvariable variable=Release_Version;]$Release_Version")
+   Write-Host "hello world"
+   Write-Host $Release_Version
   displayName: 'Setting Release variable'
 
 - task: DotNetCoreCLI@2
