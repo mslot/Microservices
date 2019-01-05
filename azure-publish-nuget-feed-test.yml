@@ -6,7 +6,6 @@ pool:
   
 variables:
   buildConfiguration: 'Release'
-  releaseVersion: $(GITVERSION.Major).$(GITVERSION.Minor).666
 
 trigger:
   branches:
@@ -27,6 +26,14 @@ steps:
   inputs:
     preferBundledVersion: false
 
+- powershell: |
+   $Release_Version = "$env:GITVERSION_MAJORMINORPATCH"
+   Write-Host ("##vso[task.setvariable variable=Release_Version;]$Release_Version")
+   Write-Host "hello world"
+   Write-Host $Release_Version
+   Write-Host $env:GITVERSION_MAJORMINORPATCH
+  displayName: 'Setting Release variable'
+
 - task: DotNetCoreCLI@2
   inputs:
     command: pack
@@ -43,6 +50,6 @@ steps:
     configuration: $(BuildConfiguration)
     packagesToPack: 'src/Microservice.Extensions.NugetFeedTest/Microservice.Extensions.NugetFeedTest/Microservice.Extensions.NugetFeedTest.csproj'
     versioningScheme: byEnvVar
-    versionEnvVar: releaseVersion
+    versionEnvVar: GITVERSION_MAJORMINORPATCH
 
 - task: PublishBuildArtifacts@1
