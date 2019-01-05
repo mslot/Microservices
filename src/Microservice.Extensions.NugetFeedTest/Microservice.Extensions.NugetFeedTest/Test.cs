@@ -11,7 +11,7 @@ namespace Microservice.Extensions.NugetFeedTest
 
         public string PullRequest2()
         {
-            return "3";
+            return "33";
         }
 
         public string MethodTestGitVersion()
