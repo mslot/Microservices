@@ -4,6 +4,11 @@ namespace Microservice.Extensions.NugetFeedTest
 {
     public class Test
     {
+        public string Release020()
+        {
+            return "020";
+        }
+
         public string PullRequest()
         {
             return "2";
