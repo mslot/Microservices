@@ -4,6 +4,11 @@ namespace Microservice.Extensions.NugetFeedTest
 {
     public class Test
     {
+        public string MayBeNewFeature()
+        {
+            return "";
+        }
+
         public string NewFeature()
         {
             string s = "";
