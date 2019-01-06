@@ -5,7 +5,7 @@ namespace Microservice.Extensions.NugetFeedTest
     public class Test
     {
 
-        public string Dev()
+        public string Dev2()
         {
             return "dev";
         }
