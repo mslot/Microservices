@@ -6,6 +6,7 @@ namespace Microservice.Extensions.NugetFeedTest
     {
         public string NewFeature()
         {
+            string s = "";
             return "new feature";
         }
 
