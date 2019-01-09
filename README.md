@@ -22,9 +22,19 @@ Wow. What a feature. It took me quite some time to do the plumming, but it works
 
 Note: not all resources yet fully integrate with having access to the vault with a simple system assigned user (that is added from the ARM template). 
 
-# NuGet
+## NuGet
 Gitflow and the feed of devops fully supports the use of prereleases and releases. What is yet to be fixed is the release part of the nuget. I want to be able to take a nuget package fra a prerelease state to a released state without recompiling the code.
 
 Note: in this project i have put the nuget code with the "main" project. This is of course not the right pattern. You want to have a seperate repository only containing the code that is going to packaged so tags, and branching doesnt interfer with the "main" project (if you are producing nugets that is going to be used in one of the microservices).
 
+## YAML for build
+Finally we see some way of storing our build steps in git. This is good because I can update the build tasks when I do code changes (maybe I add a project, maybe I rename a folder etc). This is good because:
 
+1. I can have the config versioned
+2. Because of 1) I can have it reviewed by other (and catch errors that maybe break the build before it reaches the build server)
+3. I can start testing the build step simply by having a build and release flow that allows for tesing pull requests! WOW!!!
+
+Note: Please add this for the release part also!!
+
+## The end
+I hope you can use this project in some way. Maybe you need that funky special way of referencing the system integrated user added from ARM? Maybe you want to know how you add the same configuration as webapis, to your Azure Function? Or maybe you want to see how the hell you get to produce NuGet packages with gitversion?!
