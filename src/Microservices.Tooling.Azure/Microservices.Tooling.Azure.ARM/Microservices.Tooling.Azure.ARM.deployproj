@@ -28,7 +28,7 @@
     <Content Include="azuredeploy.json" />
     <None Include="AddAppsToVault.ps1" />
     <None Include="AddSecretFromReleasePipeline.ps1" />
-    <None Include="azuredeploy2.son" />
+    <None Include="azuredeploy2.json" />
     <None Include="Deployment.targets">
       <Visible>False</Visible>
     </None>
