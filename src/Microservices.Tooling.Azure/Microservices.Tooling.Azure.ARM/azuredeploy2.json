@@ -34,28 +34,28 @@
             "type": "Microsoft.EventGrid/topics",
             "location": "[parameters('location')]",
             "apiVersion": "2018-01-01"
-        },
-        {
-            "name": "[concat(parameters('eventGridTopicName'), '/Microsoft.EventGrid/', parameters('eventGridSubscriptionName'))]",
-            "type": "Microsoft.EventGrid/topics/providers/eventSubscriptions",
-            "location": "[parameters('location')]",
-            "apiVersion": "2018-01-01",
-            "properties": {
-                "destination": {
-                    "endpointType": "WebHook",
-                    "properties": {
-                        "endpointUrl": "[parameters('eventGridSubscriptionUrl')]"
-                    }
-                },
-                "filter": {
-                    "includedEventTypes": [
-                        "All"
-                    ]
-                }
-            },
-            "dependsOn": [
-                "[parameters('eventGridTopicName')]"
-            ]
         }
+        //,{
+        //    "name": "[concat(parameters('eventGridTopicName'), '/Microsoft.EventGrid/', parameters('eventGridSubscriptionName'))]",
+        //    "type": "Microsoft.EventGrid/topics/providers/eventSubscriptions",
+        //    "location": "[parameters('location')]",
+        //    "apiVersion": "2018-01-01",
+        //    "properties": {
+        //        "destination": {
+        //            "endpointType": "WebHook",
+        //            "properties": {
+        //                "endpointUrl": "[parameters('eventGridSubscriptionUrl')]"
+        //            }
+        //        },
+        //        "filter": {
+        //            "includedEventTypes": [
+        //                "All"
+        //            ]
+        //        }
+        //    },
+        //    "dependsOn": [
+        //        "[parameters('eventGridTopicName')]"
+        //    ]
+        //}
     ]
 }
