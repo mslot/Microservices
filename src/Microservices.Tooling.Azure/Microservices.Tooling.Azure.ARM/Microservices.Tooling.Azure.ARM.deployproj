@@ -23,12 +23,16 @@
   <Import Condition=" Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Deployment\1.1\DeploymentProject.targets') " Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Deployment\1.1\DeploymentProject.targets" />
   <!-- vertag<:>end -->
   <ItemGroup>
-    <Content Include="azuredeploy2.parameters.json" />
+    <Content Include="azuredeploy2.parameters.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="azuredeploy.parameters.json" />
     <Content Include="azuredeploy.json" />
     <None Include="AddAppsToVault.ps1" />
     <None Include="AddSecretFromReleasePipeline.ps1" />
-    <None Include="azuredeploy2.json" />
+    <None Include="azuredeploy2.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Deployment.targets">
       <Visible>False</Visible>
     </None>
