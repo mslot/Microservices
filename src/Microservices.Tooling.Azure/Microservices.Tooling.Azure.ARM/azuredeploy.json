@@ -310,91 +310,91 @@
       "dependsOn": [
         "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanName-v'))]"
       ]
-    },
-    {
-      "type": "Microsoft.KeyVault/vaults",
-      "name": "[variables('keyVaultName-v')]",
-      "apiVersion": "2016-10-01",
-      "location": "[parameters('location')]",
-      "dependsOn": [
-        "[resourceId('Microsoft.Web/sites', variables('webapiName-v'))]"
-      ],
-      "properties": {
-        "enabledForDeployment": "[parameters('enableVaultForDeployment')]",
-        "enabledForDiskEncryption": "[parameters('enableVaultForDiskEncryption')]",
-        "enabledForTemplateDeployment": "[parameters('enabledForTemplateDeployment')]",
-        "tenantId": "[parameters('tenantId')]",
-        "accessPolicies": [
-          {
-            "tenantId": "[parameters('tenantId')]",
-            "objectId": "[parameters('objectId')]",
-            "permissions": {
-              "keys": "[parameters('keysPermissions')]",
-              "secrets": "[parameters('secretsPermissions')]"
-            }
-          },
-          {
-            "tenantId": "[reference(concat(resourceId('Microsoft.Web/sites', variables('functionsName-v')), '/providers/Microsoft.ManagedIdentity/Identities/default'), '2015-08-31-PREVIEW').tenantId]",
-            "objectId": "[reference(concat(resourceId('Microsoft.Web/sites', variables('functionsName-v')), '/providers/Microsoft.ManagedIdentity/Identities/default'), '2015-08-31-PREVIEW').principalId]",
-            "permissions": {
-              "keys": "[parameters('keysPermissions')]",
-              "secrets": "[parameters('secretsPermissions')]"
-            }
-          },
-          {
-            "tenantId": "[reference(concat(resourceId('Microsoft.Web/sites/slots', variables('webapiName-v'),'Preview'), '/providers/Microsoft.ManagedIdentity/Identities/default'), '2015-08-31-PREVIEW').tenantId]",
-            "objectId": "[reference(concat(resourceId('Microsoft.Web/sites/slots', variables('webapiName-v'),'Preview'), '/providers/Microsoft.ManagedIdentity/Identities/default'), '2015-08-31-PREVIEW').principalId]",
-            "permissions": {
-              "keys": "[parameters('keysPermissions')]",
-              "secrets": "[parameters('secretsPermissions')]"
-            }
-          },
-          {
-            "tenantId": "[reference(concat(resourceId('Microsoft.Web/sites', variables('webapiName-v')), '/providers/Microsoft.ManagedIdentity/Identities/default'), '2015-08-31-PREVIEW').tenantId]",
-            "objectId": "[reference(concat(resourceId('Microsoft.Web/sites', variables('webapiName-v')), '/providers/Microsoft.ManagedIdentity/Identities/default'), '2015-08-31-PREVIEW').principalId]",
-            "permissions": {
-              "keys": "[parameters('keysPermissions')]",
-              "secrets": "[parameters('secretsPermissions')]"
-            }
-          }
-        ],
-        "sku": {
-          "name": "[parameters('skuName')]",
-          "family": "A"
-        }
-      }
-    },
-    {
-      "type": "Microsoft.KeyVault/vaults/secrets",
-      "name": "[concat(variables('keyVaultName-v'),'/','ARMSecret')]",
-      "apiVersion": "2018-02-14",
-      "properties": {
-        "contentType": "text/plain",
-        "value": "AnARMSecretSssssh"
-      },
-      "dependsOn": [
-        "[resourceId('Microsoft.KeyVault/vaults', variables('keyVaultName-v'))]"
-      ]
-    },
-    {
-      "type": "Microsoft.KeyVault/vaults/secrets",
-      "name": "[concat(variables('keyVaultName-v'),'/', variables('queueStorageConnectionStringSecretName-v'))]",
-      "apiVersion": "2018-02-14",
-      "properties": {
-        "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('queueStorageName-v'), ';AccountKey=', listKeys(variables('storageAccountResourceId'),'2015-05-01-preview').key1)]"
-      }
-    },
-    {
-      "type": "Microsoft.KeyVault/vaults/secrets",
-      "name": "[concat(variables('keyVaultName-v'),'/','MSSqlConnectionString')]",
-      "apiVersion": "2018-02-14",
-      "properties": {
-        "contentType": "text/plain",
-        "value": "[concat('Data Source=tcp:', reference(concat('Microsoft.Sql/servers/', variables('sqlserverName'))).fullyQualifiedDomainName, ',1433;Initial Catalog=', variables('databaseName'), ';User Id=', variables('sqlAdministratorLogin'), '@', reference(concat('Microsoft.Sql/servers/', variables('sqlserverName'))).fullyQualifiedDomainName, ';Password=', variables('sqlAdministratorLoginPassword'), ';')]"
-      },
-      "dependsOn": [
-        "[resourceId('Microsoft.KeyVault/vaults', variables('keyVaultName-v'))]"
-      ]
     }
+  // , {
+  //    "type": "Microsoft.KeyVault/vaults",
+   //   "name": "[variables('keyVaultName-v')]",
+  //    "apiVersion": "2016-10-01",
+  //    "location": "[parameters('location')]",
+  //    "dependsOn": [
+   //     "[resourceId('Microsoft.Web/sites', variables('webapiName-v'))]"
+   //   ],
+   //   "properties": {
+    //    "enabledForDeployment": "[parameters('enableVaultForDeployment')]",
+    //    "enabledForDiskEncryption": "[parameters('enableVaultForDiskEncryption')]",
+    //    "enabledForTemplateDeployment": "[parameters('enabledForTemplateDeployment')]",
+      //  "tenantId": "[parameters('tenantId')]",
+     //   "accessPolicies": [
+     //     {
+     //       "tenantId": "[parameters('tenantId')]",
+      //      "objectId": "[parameters('objectId')]",
+       //     "permissions": {
+      //        "keys": "[parameters('keysPermissions')]",
+      //        "secrets": "[parameters('secretsPermissions')]"
+      //      }
+     //     },
+      //    {
+      //      "tenantId": "[reference(concat(resourceId('Microsoft.Web/sites', variables('functionsName-v')), '/providers/Microsoft.ManagedIdentity/Identities/default'), '2015-08-31-PREVIEW').tenantId]",
+       //     "objectId": "[reference(concat(resourceId('Microsoft.Web/sites', variables('functionsName-v')), '/providers/Microsoft.ManagedIdentity/Identities/default'), '2015-08-31-PREVIEW').principalId]",
+        //    "permissions": {
+         //     "keys": "[parameters('keysPermissions')]",
+        //      "secrets": "[parameters('secretsPermissions')]"
+        //    }
+       //   },
+        //  {
+       //     "tenantId": "[reference(concat(resourceId('Microsoft.Web/sites/slots', variables('webapiName-v'),'Preview'), '/providers/Microsoft.ManagedIdentity/Identities/default'), '2015-08-31-PREVIEW').tenantId]",
+      //      "objectId": "[reference(concat(resourceId('Microsoft.Web/sites/slots', variables('webapiName-v'),'Preview'), '/providers/Microsoft.ManagedIdentity/Identities/default'), '2015-08-31-PREVIEW').principalId]",
+      //      "permissions": {
+     //         "keys": "[parameters('keysPermissions')]",
+     //         "secrets": "[parameters('secretsPermissions')]"
+   //         }
+  //        },
+    //      {
+     //       "tenantId": "[reference(concat(resourceId('Microsoft.Web/sites', variables('webapiName-v')), '/providers/Microsoft.ManagedIdentity/Identities/default'), '2015-08-31-PREVIEW').tenantId]",
+      //      "objectId": "[reference(concat(resourceId('Microsoft.Web/sites', variables('webapiName-v')), '/providers/Microsoft.ManagedIdentity/Identities/default'), '2015-08-31-PREVIEW').principalId]",
+     //       "permissions": {
+    //          "keys": "[parameters('keysPermissions')]",
+     //         "secrets": "[parameters('secretsPermissions')]"
+    //        }
+    //      }
+    //    ],
+    //    "sku": {
+   //       "name": "[parameters('skuName')]",
+   //       "family": "A"
+   //     }
+  //    }
+  //  },
+  //  {
+   //   "type": "Microsoft.KeyVault/vaults/secrets",
+   //   "name": "[concat(variables('keyVaultName-v'),'/','ARMSecret')]",
+    //  "apiVersion": "2018-02-14",
+   //   "properties": {
+   //     "contentType": "text/plain",
+   //     "value": "AnARMSecretSssssh"
+    //  },
+   //   "dependsOn": [
+   //     "[resourceId('Microsoft.KeyVault/vaults', variables('keyVaultName-v'))]"
+  //    ]
+  //  },
+  //  {
+  //    "type": "Microsoft.KeyVault/vaults/secrets",
+    //  "name": "[concat(variables('keyVaultName-v'),'/', variables('queueStorageConnectionStringSecretName-v'))]",
+  //    "apiVersion": "2018-02-14",
+  //    "properties": {
+  //      "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('queueStorageName-v'), ';AccountKey=', listKeys(variables('storageAccountResourceId'),'2015-05-01-preview').key1)]"
+  //    }
+  //  },
+  //  {
+    //  "type": "Microsoft.KeyVault/vaults/secrets",
+   //   "name": "[concat(variables('keyVaultName-v'),'/','MSSqlConnectionString')]",
+   //   "apiVersion": "2018-02-14",
+   //   "properties": {
+   //     "contentType": "text/plain",
+    //    "value": "[concat('Data Source=tcp:', reference(concat('Microsoft.Sql/servers/', variables('sqlserverName'))).fullyQualifiedDomainName, ',1433;Initial Catalog=', variables('databaseName'), ';User Id=', variables('sqlAdministratorLogin'), '@', reference(concat('Microsoft.Sql/servers/', variables('sqlserverName'))).fullyQualifiedDomainName, ';Password=', variables('sqlAdministratorLoginPassword'), ';')]"
+    //  },
+      //"dependsOn": [
+     //   "[resourceId('Microsoft.KeyVault/vaults', variables('keyVaultName-v'))]"
+     // ]
+    //}
   ]
 }
