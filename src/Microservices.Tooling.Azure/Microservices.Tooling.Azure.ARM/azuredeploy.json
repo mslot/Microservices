@@ -110,7 +110,7 @@
     }
   },
   "variables": {
-    "appsettings" :[{"name":"test" , "value" :"[parameters('environment')]"}, {"name" :"test2", value :"[variables('sqlserverName')]"}, {"name" :"testy", "value" :"test" } ], 
+    "appsettings" :[{"name":"test" , "value" :"[parameters('environment')]"}, {"name" :"test2", "value":"[variables('sqlserverName')]"}, {"name" :"testy", "value" :"test" } ], 
    // "queueStorageConnectionStringSecretNameResourceId-v": "[resourceId('Microsoft.KeyVault/vaults/secrets',variables('keyVaultName-v'),variables('queueStorageConnectionStringSecretName-v'))]",
     "storageAccountResourceId": "[resourceId('Microsoft.Storage/storageAccounts',variables('queueStorageName-v'))]",
     "queueStorageConnectionStringSecretName-v": "[concat('testQueueStorageConnectionSecret','-',parameters('environment'))]",
