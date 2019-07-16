@@ -202,7 +202,7 @@
         "displayName": "WebAppSlots"
       },
       "properties": {
-        "siteconfig" :{"appsettings" : [{"name":"test" , "value" :"[parameters('environment')]"}, {"name" :"test2", "value":"[variables('sqlserverName')]"}, {"name" :"testy", "value" :"test1" }, {"name" :"fg", "value" :"ghkhhkgk" }, {"name" :"added", "value" :"ffgh" } ] } , 
+        "siteconfig" :{"appsettings" : [{"name":"test" , "value" :"[parameters('environment')]"}, {"name" :"test2", "value":"[variables('sqlserverName')]"}, {"name" :"testy", "value" :"test1" }, {"name" :"fg", "value" :"ghkhhkgk" }, {"name" :"added", "value" :"ffgh" }, {"name" :"added2", "value" :"2"} ] } , 
         "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanName-v'))]"
       },
       "dependsOn": [
