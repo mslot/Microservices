@@ -110,7 +110,7 @@
     }
   },
   "variables": {
-    "connectionstrings" :[{"name" :"test", "connectionString" :"[concat('Server=tcp:', reference(resourceId('Microsoft.Sql/servers/', variables('sqlserverName'))).fullyQualifiedDomainName, ',1433;Initial Catalog=', variables('databaseName'), ';Persist Security Info=False;User ID=', variables('sqlserverAdministratorLogin'), ';Password=', variables('sqlserverAdministratorLoginPassword'), ';MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;')]", "type" :"SQLAzure" } ] , 
+   // "connectionstrings" :[{"name" :"test", "connectionString" :"[concat('Server=tcp:', reference(resourceId('Microsoft.Sql/servers/', variables('sqlserverName'))).fullyQualifiedDomainName, ',1433;Initial Catalog=', variables('databaseName'), ';Persist Security Info=False;User ID=', variables('sqlserverAdministratorLogin'), ';Password=', variables('sqlserverAdministratorLoginPassword'), ';MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;')]", "type" :"SQLAzure" } ] , 
     "appsettings" :[{"name":"test" , "value" :"[parameters('environment')]"}, {"name" :"test2", "value":"[variables('sqlserverName')]"}, {"name" :"testy", "value" :"test1" }, {"name" :"fg", "value" :"ghkhhkgk" } ], 
    // "queueStorageConnectionStringSecretNameResourceId-v": "[resourceId('Microsoft.KeyVault/vaults/secrets',variables('keyVaultName-v'),variables('queueStorageConnectionStringSecretName-v'))]",
     "storageAccountResourceId": "[resourceId('Microsoft.Storage/storageAccounts',variables('queueStorageName-v'))]",
@@ -202,7 +202,7 @@
         "displayName": "WebAppSlots"
       },
       "properties": {
-        "siteconfig" :{"appsettings" :"[variables('appsettings')]", "connectionStrings" :"[variables('connectionstrings')]" }, 
+        "siteconfig" :{"appsettings" :"[variables('appsettings')]", "connectionStrings" :[{"name" :"test", "connectionString" :"[concat('Server=tcp:', reference(resourceId('Microsoft.Sql/servers/', variables('sqlserverName'))).fullyQualifiedDomainName, ',1433;Initial Catalog=', variables('databaseName'), ';Persist Security Info=False;User ID=', variables('sqlserverAdministratorLogin'), ';Password=', variables('sqlserverAdministratorLoginPassword'), ';MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;')]", "type" :"SQLAzure" } ], 
         "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanName-v'))]"
       },
       "dependsOn": [
@@ -305,7 +305,7 @@
         "type": "SystemAssigned"
       },
       "properties": {
-        "siteconfig" :{"appsettings" :"[variables('appsettings')]", "connectionStrings" :"[variables('connectionStrings')]" }, 
+        "siteconfig" :{"appsettings" :"[variables('appsettings')]", "connectionStrings" :[{"name" :"test", "connectionString" :"[concat('Server=tcp:', reference(resourceId('Microsoft.Sql/servers/', variables('sqlserverName'))).fullyQualifiedDomainName, ',1433;Initial Catalog=', variables('databaseName'), ';Persist Security Info=False;User ID=', variables('sqlserverAdministratorLogin'), ';Password=', variables('sqlserverAdministratorLoginPassword'), ';MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;')]", "type" :"SQLAzure" } ], 
         "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanName-v'))]"
       },
       "dependsOn": [
