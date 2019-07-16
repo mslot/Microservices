@@ -111,7 +111,7 @@
   },
   "variables": {
     "appsettings" :[{"name":"test" , "value" :"test"}], 
-    "queueStorageConnectionStringSecretNameResourceId-v": "[resourceId('Microsoft.KeyVault/vaults/secrets',variables('keyVaultName-v'),variables('queueStorageConnectionStringSecretName-v'))]",
+   // "queueStorageConnectionStringSecretNameResourceId-v": "[resourceId('Microsoft.KeyVault/vaults/secrets',variables('keyVaultName-v'),variables('queueStorageConnectionStringSecretName-v'))]",
     "storageAccountResourceId": "[resourceId('Microsoft.Storage/storageAccounts',variables('queueStorageName-v'))]",
     "queueStorageConnectionStringSecretName-v": "[concat('testQueueStorageConnectionSecret','-',parameters('environment'))]",
     "queueStorageName-v": "[concat('dftestqueuestorage',parameters('environment'))]",
@@ -225,10 +225,10 @@
         "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('functionsPlanName-v'))]",
         "siteConfig": {
           "appSettings": [
-            {
-              "name": "StorageQueueConnectionString",
-              "value": "[concat('@Microsoft.KeyVault(SecretUri=', reference(variables('queueStorageConnectionStringSecretNameResourceId-v')).secretUriWithVersion, ')')]"
-            },
+          //  {
+            //  "name": "StorageQueueConnectionString",
+           //   "value": "[concat('@Microsoft.KeyVault(SecretUri=', reference(variables('queueStorageConnectionStringSecretNameResourceId-v')).secretUriWithVersion, ')')]"
+          //  },
             {
               "name": "AzureWebJobsDashboard",
               "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('functionStorageName-v'), ';AccountKey=', listKeys(variables('storageAccountid'),'2015-05-01-preview').key1)]"
