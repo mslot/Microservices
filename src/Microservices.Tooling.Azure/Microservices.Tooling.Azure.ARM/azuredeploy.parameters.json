@@ -3,19 +3,19 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "keyVaultName": {
-      "value": null
+      "value": "testkeyvault" 
     },
     "objectId": {
       "value": null
     },
     "environment": {
-      "value": null
+      "value": "dev" 
     },
     "dbUserNameSeed": {
-      "value": null
+      "value": "12343322"
     },
     "dbPasswordSeed": {
-      "value": null
+      "value": "2934948282"
     }
   }
 }
