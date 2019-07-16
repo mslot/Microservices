@@ -202,7 +202,8 @@
         "displayName": "WebAppSlots"
       },
       "properties": {
-        "siteconfig" :{"appsettings" :"[variables('appsettings')]", "connectionStrings" :[{"name" :"test", "connectionString" :"[concat('Server=tcp:', reference(resourceId('Microsoft.Sql/servers/', variables('sqlserverName'))).fullyQualifiedDomainName, ',1433;Initial Catalog=', variables('databaseName'), ';Persist Security Info=False;User ID=', variables('sqlserverAdministratorLogin'), ';Password=', variables('sqlserverAdministratorLoginPassword'), ';MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;')]", "type" :"SQLAzure" } ], 
+        "siteconfig" :{"appsettings" :"[variables('appsettings')]", 
+        "connectionStrings" :[{"name" :"test", "connectionString" :"[concat('Server=tcp:', reference(resourceId('Microsoft.Sql/servers/', variables('sqlserverName'))).fullyQualifiedDomainName, ',1433;Initial Catalog=', variables('databaseName'), ';Persist Security Info=False;User ID=', variables('sqlserverAdministratorLogin'), ';Password=', variables('sqlserverAdministratorLoginPassword'), ';MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;')]", "type" :"SQLAzure" } ]} , 
         "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanName-v'))]"
       },
       "dependsOn": [
@@ -305,7 +306,10 @@
         "type": "SystemAssigned"
       },
       "properties": {
-        "siteconfig" :{"appsettings" :"[variables('appsettings')]", "connectionStrings" :[{"name" :"test", "connectionString" :"[concat('Server=tcp:', reference(resourceId('Microsoft.Sql/servers/', variables('sqlserverName'))).fullyQualifiedDomainName, ',1433;Initial Catalog=', variables('databaseName'), ';Persist Security Info=False;User ID=', variables('sqlserverAdministratorLogin'), ';Password=', variables('sqlserverAdministratorLoginPassword'), ';MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;')]", "type" :"SQLAzure" } ], 
+        "siteconfig" :{"appsettings" :"[variables('appsettings')]",
+        "connectionStrings" :[{"name" :"test", 
+                               "connectionString" :"[concat('Server=tcp:', reference(resourceId('Microsoft.Sql/servers/', variables('sqlserverName'))).fullyQualifiedDomainName, ',1433;Initial Catalog=', variables('databaseName'), ';Persist Security Info=False;User ID=', variables('sqlserverAdministratorLogin'), ';Password=', variables('sqlserverAdministratorLoginPassword'), ';MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;')]", 
+                               "type" :"SQLAzure" } ]} , 
         "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanName-v'))]"
       },
       "dependsOn": [
