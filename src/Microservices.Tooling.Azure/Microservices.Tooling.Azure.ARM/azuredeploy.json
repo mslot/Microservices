@@ -206,7 +206,8 @@
         "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanName-v'))]"
       },
       "dependsOn": [
-        "[resourceId('Microsoft.Web/Sites', variables('webapiName-v'))]"
+        "[resourceId('Microsoft.Web/Sites', variables('webapiName-v'))]", 
+        "[variables('sqlserverName')]" 
       ]
     },
     {
@@ -309,7 +310,8 @@
         "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanName-v'))]"
       },
       "dependsOn": [
-        "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanName-v'))]"
+        "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanName-v'))]", 
+        "[variables('sqlserverName')]" 
       ]
     }
   // , {
