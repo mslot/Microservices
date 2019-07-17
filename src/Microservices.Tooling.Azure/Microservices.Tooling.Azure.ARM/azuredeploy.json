@@ -305,7 +305,7 @@
         "type": "SystemAssigned"
       },
       "properties": {
-        ""siteconfig" :{"appsettings" : [{"name":"test" , "value" :"[parameters('environment')]"}, {"name" :"test2", "value":"[variables('sqlserverName')]"}, {"name" :"testy", "value" :"test1" }, {"name" :"fg", "value" :"ghkhhkgk" }, {"name" :"added", "value" :"ffgh" }, {"name" :"added2", "value" :"2"}, {"name" :"added3", "value" :"a" }, {"name" :"added4", "value" :"as" } ] } , 
+        "siteconfig" :{"appsettings" : [{"name":"test" , "value" :"[parameters('environment')]"}, {"name" :"test2", "value":"[variables('sqlserverName')]"}, {"name" :"testy", "value" :"test1" }, {"name" :"fg", "value" :"ghkhhkgk" }, {"name" :"added", "value" :"ffgh" }, {"name" :"added2", "value" :"2"}, {"name" :"added3", "value" :"a" }, {"name" :"added4", "value" :"as" } ] } , 
         "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanName-v'))]"
       },
       "dependsOn": [
