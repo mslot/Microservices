@@ -202,7 +202,7 @@
         "displayName": "WebAppSlots"
       },
       "properties": {
-        "siteconfig" :{"appsettings" : [{"name":"test" , "value" :"[parameters('environment')]"}, {"name" :"test2", "value":"[variables('sqlserverName')]"}, {"name" :"testy", "value" :"test1" }, {"name" :"fg", "value" :"ghkhhkgk" }, {"name" :"added", "value" :"ffgh" }, {"name" :"added2", "value" :"2"}, {"name" :"added3", "value" :"a" }, {"name" :"added4", "value" :"as" }, {"name" :"added5", "value" :"asd" }, {"name" :"added6", "value" :"asdfgh" } ] } , 
+        "siteconfig" :{"appsettings" : [{"name" :"doesit", "value" :"work" }, {"name":"test" , "value" :"[parameters('environment')]"}, {"name" :"test2", "value":"[variables('sqlserverName')]"}, {"name" :"testy", "value" :"test1" }, {"name" :"fg", "value" :"ghkhhkgk" }, {"name" :"added", "value" :"ffgh" }, {"name" :"added2", "value" :"2"}, {"name" :"added3", "value" :"a" }, {"name" :"added4", "value" :"as" }, {"name" :"added5", "value" :"asd" }, {"name" :"added6", "value" :"asdfgh" } ] } , 
         "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanName-v'))]"
       },
       "dependsOn": [
