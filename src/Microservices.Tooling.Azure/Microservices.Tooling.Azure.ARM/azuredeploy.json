@@ -226,6 +226,7 @@
       "properties": {
         "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('functionsPlanName-v'))]",
         "siteConfig": {
+          "alwaysOn":true,
           "appSettings": [
           //  {
             //  "name": "StorageQueueConnectionString",
