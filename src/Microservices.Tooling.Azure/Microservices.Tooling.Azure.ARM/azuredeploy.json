@@ -296,7 +296,7 @@
         "name": "S1"
       }
     },
-        {
+    {
       "apiVersion": "2018-02-01",
       "name": "[concat(variables('webapiName-v'),'/','servitr.io')]",
       "type": "Microsoft.Web/sites/hostNameBindings",
@@ -322,7 +322,7 @@
       "properties": {
         "siteconfig" :{          
           "alwaysOn":true,
-                      "appsettings" : [{"name":"g","value":ff"},{"name" :"only", "value" :"there" }, {"name" :"reftest", "value" :"[reference(resourceId('Microsoft.Sql/servers/', variables('sqlserverName'))).fullyQualifiedDomainName]" }, {"name":"test" , "value" :"[parameters('environment')]"}, {"name" :"test2", "value":"[variables('sqlserverName')]"}, {"name" :"testy", "value" :"test1" }, {"name" :"fg", "value" :"ghkhhkgk" }, {"name" :"added", "value" :"ffgh" }, {"name" :"added2", "value" :"2"}, {"name" :"added3", "value" :"a" }, {"name" :"added4", "value" :"as" }, {"name" :"added5", "value" :"asd" }, {"name" :"added6", "value" :"asdfgh" } ] } , 
+                      "appsettings" : [{"name":"g","value":"ff"},{"name" :"only", "value" :"there" }, {"name" :"reftest", "value" :"[reference(resourceId('Microsoft.Sql/servers/', variables('sqlserverName'))).fullyQualifiedDomainName]" }, {"name":"test" , "value" :"[parameters('environment')]"}, {"name" :"test2", "value":"[variables('sqlserverName')]"}, {"name" :"testy", "value" :"test1" }, {"name" :"fg", "value" :"ghkhhkgk" }, {"name" :"added", "value" :"ffgh" }, {"name" :"added2", "value" :"2"}, {"name" :"added3", "value" :"a" }, {"name" :"added4", "value" :"as" }, {"name" :"added5", "value" :"asd" }, {"name" :"added6", "value" :"asdfgh" } ] } , 
         "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanName-v'))]"
       },
       "dependsOn": [
