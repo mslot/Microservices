@@ -296,6 +296,19 @@
         "name": "S1"
       }
     },
+        {
+      "apiVersion": "2018-11-01",
+      "name": "testcertificate",
+      "type": "Microsoft.Web/certificates",
+      "location": "[parameters('location')]",
+      "properties": {
+        "pfxBlob": "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",
+        "password": "1234"
+      },
+      "tags": {
+        "displayName": "testcertificate"
+      }
+    },
     {
       "apiVersion": "2018-02-01",
       "name": "[concat(variables('webapiName-v'),'/','servitr.io')]",
@@ -322,7 +335,12 @@
       "properties": {
         "siteconfig" :{          
           "alwaysOn":true,
-                      "appsettings" : [{"name":"g","value":"ff"},{"name" :"only", "value" :"there" }, {"name" :"reftest", "value" :"[reference(resourceId('Microsoft.Sql/servers/', variables('sqlserverName'))).fullyQualifiedDomainName]" }, {"name":"test" , "value" :"[parameters('environment')]"}, {"name" :"test2", "value":"[variables('sqlserverName')]"}, {"name" :"testy", "value" :"test1" }, {"name" :"fg", "value" :"ghkhhkgk" }, {"name" :"added", "value" :"ffgh" }, {"name" :"added2", "value" :"2"}, {"name" :"added3", "value" :"a" }, {"name" :"added4", "value" :"as" }, {"name" :"added5", "value" :"asd" }, {"name" :"added6", "value" :"asdfgh" } ] } , 
+                      "appsettings" : [            
+                        {
+              "name": "WEBSITE_LOAD_CERTIFICATES",
+              "value": "[reference('testcertificate').thumbprint]"
+            },
+                        {"name":"g","value":"ff"},{"name" :"only", "value" :"there" }, {"name" :"reftest", "value" :"[reference(resourceId('Microsoft.Sql/servers/', variables('sqlserverName'))).fullyQualifiedDomainName]" }, {"name":"test" , "value" :"[parameters('environment')]"}, {"name" :"test2", "value":"[variables('sqlserverName')]"}, {"name" :"testy", "value" :"test1" }, {"name" :"fg", "value" :"ghkhhkgk" }, {"name" :"added", "value" :"ffgh" }, {"name" :"added2", "value" :"2"}, {"name" :"added3", "value" :"a" }, {"name" :"added4", "value" :"as" }, {"name" :"added5", "value" :"asd" }, {"name" :"added6", "value" :"asdfgh" } ] } , 
         "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanName-v'))]"
       },
       "dependsOn": [
